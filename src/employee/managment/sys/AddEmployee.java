@@ -173,10 +173,14 @@ public class AddEmployee extends JFrame implements ActionListener{
             try {
                 EmployeeDAO empdao = new EmployeeDAO();
                 String query = "insert into employee values('"+name+"', '"+fname+"','"+dob+"', '"+salary+"', '"+address+"', '"+phonNum+"','"+email+"', '"+qualification+"','"+designation+"', '"+adhar+"', '"+empID+"')";
-                empdao.stmt.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Details added successfully");
-                setVisible(false);
-                new Home();
+                if(name.isEmpty() || fname.isEmpty() || dob.isEmpty() || salary.isEmpty() || address.isEmpty() || phonNum.isEmpty() || email.isEmpty() || qualification.isEmpty() || designation.isEmpty() || adhar.isEmpty() || empID.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please fill the all details");
+                }else {
+                    empdao.stmt.executeUpdate(query);
+                    JOptionPane.showMessageDialog(null, "Details added successfully");
+                    setVisible(false);
+                    new Home();
+                }
             }catch (Exception exp){
                 exp.printStackTrace();
             }
