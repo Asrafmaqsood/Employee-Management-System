@@ -99,10 +99,13 @@ public class AdmidRegistration extends JFrame implements ActionListener {
             try {
                 EmployeeDAO empdao = new EmployeeDAO();
                 String query = "insert into Admin_data values('"+Fullname+"', '"+Phonumb+"','"+Email+"', '"+username+"', '"+Password+"')";
-                empdao.stmt.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Registrations successfully");
-                setVisible(false);
-                new App();
+                  if(Fullname.isEmpty() || Phonumb.isEmpty() || Email.isEmpty() || username.isEmpty() || Password.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Please fill the all details");
+                }else {
+                    empdao.stmt.executeUpdate(query);
+                    JOptionPane.showMessageDialog(null, "Registrations successfully");
+                    setVisible(false);
+                }
             }catch (Exception exp){
                 exp.printStackTrace();
             }
